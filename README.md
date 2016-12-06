@@ -1,3 +1,5 @@
+![Travis build](https://travis-ci.org/robertnovo/progressive-webapp.svg?branch=master)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 
