@@ -1,0 +1,1 @@
+export const PHOTOS_LOADED = 'PHOTOS_LOADED';

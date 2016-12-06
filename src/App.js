@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { connect } from 'react-redux';
+import * as actions from './actions';
 import './App.css';
+import Images from './containers/images';
 
 class App extends Component {
   componentWillMount() {
-    fetch('/images')
-    .then(result => result.json())
-    .then(result => console.log(result));
+    setInterval(this.props.loadPhotos, 2000);
+    // this.props.loadPhotos();
   }
   render() {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h1>Op Julbilder</h1>
+          <div>TODO: SEARCH COMPONENT</div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Images />
       </div>
     );
   }
 }
 
-export default App;
+export default connect(null, actions)(App);

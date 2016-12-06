@@ -10,8 +10,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/images', (req, res) => {
-  console.log(request);
-  request('https://api.flickr.com/services/feeds/photos_public.gne?tags=christmas,jul,xmas&tagmode=any&format=json&nojsoncallback=1', (err, response, body) => {
+  request('https://api.flickr.com/services/feeds/photos_public.gne?tags=christmas,tree,xmas&tagmode=any&format=json&nojsoncallback=1', (err, response, body) => {
     res.type('json');
     res.send(body);
   })
