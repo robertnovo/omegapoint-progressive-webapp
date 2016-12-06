@@ -3,7 +3,7 @@ node_js:
   - "6.9.0"
 
 install:
-  yarn
+  npm install
 
 script:
-  yarn test
+  npm run test
