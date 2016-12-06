@@ -17,7 +17,7 @@ app.get('/images', (req, res) => {
 
 });
 
-const PORT = process.env.port || 4444;
+const PORT = process.env.PORT || 4444;
 app.listen(PORT, () => {
   console.log('Server running on', PORT);
 })
