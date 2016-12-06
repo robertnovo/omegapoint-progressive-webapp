@@ -1,9 +1,12 @@
 language: node_js
 node_js:
-  - "6.9.0"
-
-install:
-  npm install
-
-script:
-  npm run test
+- 6.9.0
+install: npm install
+script: npm run test
+deploy:
+  provider: heroku
+  api_key:
+    secure: lLSLg3NNaRimTfNXJ5eb53pqUwErMNd7JwtsqNpX6iksOHdz/+v6LZgXcFrXa6gKeNmfT+AF8YvcbWmXgVpAaVngNiWIf1Eu3IjMgqy5aS4iHK7B/QaryO8n9/VpbH6ITdmIQXwhb1+jMkvibM/2lbSGTwm99hlpByh0SwOddlEh/hQAagWxwjz19Rmm7KeqQ3t8V2WwmwRBiHO9wDNrb73HarHCtnXA5B4XJt0FfkzafAc8nWPhCn3MNuI9VeWluqFFM9HpCWwec60VpMzzbgvzn8bkkTyd5tKx3SMOpdQP1UTM07JKF6BOVA86OGyP7hhBtI8DEA42HsCYkaJoC9fTRtoAIdsdCpAYSpLWfgFV/81F0JGUmUls3aHaaFPPWai3OC5ds5TWM1DkJAa+Eo2+AaZ93tmXMyxLS1RhON2EMBToaUxj7nhosPyhHv29P+1+Fo9xhNrMxkXJaaksTwZhlG1xWWYhpimndlc5W0AzTUOIZZNSx3QNnqaXXVSntWKxNOOQgTYHJ9j5Lvw3kZHPpvlk47od8M4x11/0zEGNxz1laOg+sDEkQZJIjMBckBg/JIAVboUY9NcaWyP5Sxp4iS2JmqEv3Ms1IXzZ6pQjZ89/c219P/fv28KulBvoVfbR6XScQxIQrjL81uiD49umHdYIH3WGtaGpmh1gXPY=
+  app: op-web-progressiv-app
+  on:
+    repo: robertnovo/progressive-webapp
