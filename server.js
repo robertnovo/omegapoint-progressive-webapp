@@ -9,11 +9,23 @@ app.use(function(req, res, next) {
   next();
 });
 
+let cachedBody = undefined;
+var cacheTime = Date.now();
+
 app.get('/images', (req, res) => {
-  request('https://api.flickr.com/services/feeds/photos_public.gne?tags=christmas,tree,xmas&tagmode=any&format=json&nojsoncallback=1', (err, response, body) => {
-    res.type('json');
-    res.send(body);
-  })
+  res.type('json');
+  if (cacheTime < Date.now() - 60000) {
+    cachedBody = undefined;
+  }
+  if (cachedBody !== undefined) {
+    res.send(cachedBody);
+  } else {
+    request('https://api.flickr.com/services/feeds/photos_public.gne?tags=christmas,tree,xmas&tagmode=any&format=json&nojsoncallback=1', (err, response, body) => {
+      cachedBody = body;
+      cacheTime = Date.now();
+      res.send(body);
+    });
+  }
 });
 
 const PORT = process.env.PORT || 4444;
