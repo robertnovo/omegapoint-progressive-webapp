@@ -14,7 +14,6 @@ app.get('/images', (req, res) => {
     res.type('json');
     res.send(body);
   })
-
 });
 
 const PORT = process.env.PORT || 4444;

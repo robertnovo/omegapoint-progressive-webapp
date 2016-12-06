@@ -6,8 +6,8 @@ import Images from './containers/images';
 
 class App extends Component {
   componentWillMount() {
-    setInterval(this.props.loadPhotos, 2000);
-    // this.props.loadPhotos();
+    this.props.loadPhotos();
+    setInterval(this.props.loadPhotos, 30*1000);
   }
   render() {
     return (
