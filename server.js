@@ -10,11 +10,11 @@ app.use(function(req, res, next) {
 });
 
 let cachedBody = undefined;
-var cacheTime = Date.now();
+var cacheTime = performance.now();
 
 app.get('/images', (req, res) => {
   res.type('json');
-  if (cacheTime < Date.now() - 60000) {
+  if (cacheTime < performance.now() - 60000) {
     cachedBody = undefined;
   }
   if (cachedBody !== undefined) {
@@ -22,7 +22,7 @@ app.get('/images', (req, res) => {
   } else {
     request('https://api.flickr.com/services/feeds/photos_public.gne?tags=christmas,tree,xmas&tagmode=any&format=json&nojsoncallback=1', (err, response, body) => {
       cachedBody = body;
-      cacheTime = Date.now();
+      cacheTime = performance.now();
       res.send(body);
     });
   }
