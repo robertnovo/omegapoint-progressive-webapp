@@ -6,6 +6,9 @@ import thunk from 'redux-thunk';
 import App from './App';
 import './index.css';
 
+
+Notification.requestPermission();
+
 if (navigator.serviceWorker) {
 	navigator.serviceWorker.register("service-worker.js");
 }
