@@ -9,7 +9,7 @@ module.exports = {
     runtimeCaching: [{
         // See https://github.com/GoogleChrome/sw-toolbox#methods
         urlPattern: /images/,
-        handler: 'cacheFirst',
+        handler: 'networkFirst',
         // See https://github.com/GoogleChrome/sw-toolbox#options
         options: {
             cache: {
