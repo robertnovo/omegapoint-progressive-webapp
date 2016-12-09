@@ -6,5 +6,17 @@ module.exports = {
         'build/img/**.*',
         'build/static/**/*'
     ],
-    navigateFallback: "offline.html"
+    navigateFallback: "offline.html",
+    runtimeCaching: [{
+        // See https://github.com/GoogleChrome/sw-toolbox#methods
+        urlPattern: /images/,
+        handler: 'cacheFirst',
+        // See https://github.com/GoogleChrome/sw-toolbox#options
+        options: {
+            cache: {
+                maxEntries: 1,
+                name: 'images-cache'
+            }
+        }
+    }]
 };
