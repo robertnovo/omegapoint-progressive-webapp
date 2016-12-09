@@ -1,7 +1,6 @@
 module.exports = {
     root: "build",
     staticFileGlobs: [
-        'build/css/**.css',
         'build/**/*.html',
         'build/img/**.*',
         'build/static/**/*'
@@ -18,5 +17,6 @@ module.exports = {
                 name: 'images-cache'
             }
         }
-    }]
+    }],
+    importScripts: ["service-worker-push.js"]
 };
