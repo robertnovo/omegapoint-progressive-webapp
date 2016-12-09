@@ -6,6 +6,10 @@ import thunk from 'redux-thunk';
 import App from './App';
 import './index.css';
 
+if (navigator.serviceWorker) {
+	navigator.serviceWorker.register("service-worker.js");
+}
+
 import * as reducers from './store/reducers';
 const store = createStore(
   combineReducers(reducers),
