@@ -1,5 +1,31 @@
 'use strict';
 
+function initialiseState() {
+	if (Notification.permission !== 'granted') {
+		console.log('The user has not granted the notification permission.');
+		return;
+	} else if (Notification.permission === "blocked") {
+		/* the user has previously denied push. Can't reprompt. */
+	} else {
+		/* show a prompt to the user */
+	}
+
+	// Use serviceWorker.ready so this is only invoked
+	// when the service worker is available.
+	navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+		serviceWorkerRegistration.pushManager.getSubscription()
+			.then(function (subscription) {
+				if (!subscription) {
+					// Set appropriate app states.
+					return;
+				}
+			})
+			.catch(function (err) {
+				console.log('Error during getSubscription()', err);
+			});
+	});
+}
+
 // Incrementing CACHE_VERSION will kick off the install event and force previously cached
 // resources to be cached again.
 const CACHE_VERSION = 1;
@@ -9,7 +35,7 @@ let CURRENT_CACHES = {
 const OFFLINE_URL = 'offline.html';
 
 function createCacheBustedRequest(url) {
-	let request = new Request(url, {cache: 'reload'});
+	let request = new Request(url, { cache: 'reload' });
 	// See https://fetch.spec.whatwg.org/#concept-request-mode
 	// This is not yet supported in Chrome as of M48, so we need to explicitly check to see
 	// if the cache: 'reload' option had any effect.
@@ -27,8 +53,8 @@ self.addEventListener('install', event => {
 	event.waitUntil(
 		// We can't use cache.add() here, since we want OFFLINE_URL to be the cache key, but
 		// the actual URL we end up requesting might include a cache-busting parameter.
-		fetch(createCacheBustedRequest(OFFLINE_URL)).then(function(response) {
-			return caches.open(CURRENT_CACHES.offline).then(function(cache) {
+		fetch(createCacheBustedRequest(OFFLINE_URL)).then(function (response) {
+			return caches.open(CURRENT_CACHES.offline).then(function (cache) {
 				return cache.put(OFFLINE_URL, response);
 			});
 		})
@@ -39,7 +65,7 @@ self.addEventListener('activate', event => {
 	// Delete all caches that aren't named in CURRENT_CACHES.
 	// While there is only one cache in this example, the same logic will handle the case where
 	// there are multiple versioned caches.
-	let expectedCacheNames = Object.keys(CURRENT_CACHES).map(function(key) {
+	let expectedCacheNames = Object.keys(CURRENT_CACHES).map(function (key) {
 		return CURRENT_CACHES[key];
 	});
 
@@ -88,7 +114,7 @@ self.addEventListener('fetch', event => {
 	// handled by the browser as if there were no service worker involvement.
 });
 
-self.addEventListener('push', function(event) {
+self.addEventListener('push', function (event) {
 	console.log('Received a push message', event);
 
 	var title = 'Yay a message.';
@@ -105,7 +131,7 @@ self.addEventListener('push', function(event) {
 	);
 });
 
-self.addEventListener('notificationclick', function(event) {
+self.addEventListener('notificationclick', function (event) {
 	console.log('On notification click: ', event.notification.tag);
 	// Android doesn’t close the notification when you click on it
 	// See: http://crbug.com/463146
@@ -115,7 +141,7 @@ self.addEventListener('notificationclick', function(event) {
 	// focuses if it is
 	event.waitUntil(clients.matchAll({
 		type: 'window'
-	}).then(function(clientList) {
+	}).then(function (clientList) {
 		for (var i = 0; i < clientList.length; i++) {
 			var client = clientList[i];
 			if (client.url === '/' && 'focus' in client) {
