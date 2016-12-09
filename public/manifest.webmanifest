@@ -27,7 +27,7 @@
     "sizes": "168x168",
     "type": "image/png"
   }, {
-    "src": "image/homescreen192.png",
+    "src": "img/homescreen192.png",
     "sizes": "192x192",
     "type": "image/png"
   }],
