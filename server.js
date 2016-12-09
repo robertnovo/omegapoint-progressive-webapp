@@ -12,6 +12,14 @@ app.use(function(req, res, next) {
 let cachedBody = undefined;
 var cacheTime = process.hrtime();
 
+function ensureSecure(req, res, next) {
+  if (req.secure) {
+    return next();
+  };
+  res.redirect('https://' + req.hostname + req.url); // express 4.x
+};
+app.all('*', ensureSecure);
+
 app.get('/images', (req, res) => {
   res.type('json');
   if (cacheTime < process.hrtime() - 60000) {
