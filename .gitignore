@@ -1,5 +1,5 @@
 .DS_Store
-build/
+build/**
 
 # Logs
 logs
@@ -48,3 +48,7 @@ jspm_packages
 
 # Yarn Integrity file
 .yarn-integrity
+
+.idea
+
+*.iml
