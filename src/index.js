@@ -7,7 +7,9 @@ import App from './App';
 import './index.css';
 
 
-Notification.requestPermission();
+if (Notification) {
+	Notification.requestPermission();
+}
 
 if (navigator.serviceWorker) {
 	navigator.serviceWorker.register("service-worker.js");
