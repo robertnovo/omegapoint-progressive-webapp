@@ -4,7 +4,7 @@
   "start_url": ".",
   "display": "standalone",
   "background_color": "#157012",
-  "theme_color": "blue",
+  "theme_color": "red",
   "description": "Ho ho! Titta på fina julbilder speciellt utvalda av...flickers sökapi!",
   "icons": [{
     "src": "img/homescreen48.png",
