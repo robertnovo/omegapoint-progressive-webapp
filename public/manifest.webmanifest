@@ -1,8 +1,8 @@
 {
   "name": "Op Julbilder",
   "short_name": "Op Julbilder",
-  "start_url": ".",
-  "display": "standalone",
+  "start_url": "/",
+  "display": "fullscreen",
   "background_color": "#157012",
   "theme_color": "red",
   "description": "Ho ho! Titta på fina julbilder speciellt utvalda av...flickers sökapi!",
@@ -27,7 +27,7 @@
     "sizes": "168x168",
     "type": "image/png"
   }, {
-    "src": "img/homescreen192.png",
+    "src": "image/homescreen192.png",
     "sizes": "192x192",
     "type": "image/png"
   }],
